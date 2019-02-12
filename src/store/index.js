@@ -8,7 +8,7 @@ const module1 = {
     module1Value: 'Module 1'
   },
   getters: {
-    module1ValueWithHello(state, getters) {
+    module1ValueWithHello(state, getters, rootState) {
       return 'Hello, ' + state.module1Value;
     }
   },

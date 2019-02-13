@@ -4,6 +4,7 @@
       module1
     </h1>
     <h2>{{ module1ValueWithHello }}</h2>
+    <h3>{{ module1 }}</h3>
     <br />
 
     module1 값 변경
@@ -14,6 +15,7 @@
       module2
     </h1>
     <h2>{{ module2ValueWithHello }}</h2>
+    <h3>{{ module2 }}</h3>
     module2 값 변경
     <input type="text" v-model="module2Value">
     <button type="button" @click="changeModule2Value">변경</button>
@@ -21,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'app',
@@ -40,10 +42,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'module1ValueWithHello',
-      'module2ValueWithHello'
-    ])
+    ...mapState({
+      module1: state => state.module1.module1Value,
+      module2: state => state.module2.module2Value
+    }),
+    ...mapGetters({
+      module1ValueWithHello: 'module1ValueWithHello',
+      module2ValueWithHello: 'module2ValueWithHello'
+    })
   },
   components: {
   }
